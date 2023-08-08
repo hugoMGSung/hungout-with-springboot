@@ -7,3 +7,4 @@ Spring Boot 가지고 놀기
 - 다운로드 후 압축 풀기 (C:\DEV\TOOLS\Gradle)
 - 시스템 경로에 등록(sysdm.cpl)
 
+<img src="https://raw.githubusercontent.com/hugoMGSung/hungout-with-springboot/main/images/sb0001.png" width="500">
