@@ -78,7 +78,7 @@ dependencies {
 
 - 프로젝트 
     - gradle로 생성한 폴더에서 아래 명령실행, 결과는  BUILD SUCCESSFUL
-    - 경량 웹서버 gretty를 사용하고 싶었으나, 빌드 오류로 제거
+    - 경량 웹서버 gretty를 사용하고 싶었으나, **빌드 오류**로 제거
 
 
 ```shell
