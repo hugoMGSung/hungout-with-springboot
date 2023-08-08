@@ -76,7 +76,7 @@ dependencies {
 }
 ```
 
-
+- 프로젝트 
     - gradle로 생성한 폴더에서 아래 명령실행, 결과는  BUILD SUCCESSFUL
 
 
