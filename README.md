@@ -26,3 +26,5 @@ Spring Boot 가지고 놀기
 - 서버 한글깨지는 경우
     - C:\Users\xxxx\.rsp\redhat-community-server-connector\runtimes\installations\tomcat-9.0.41\apache-tomcat-9.0.41\conf
     - logging.properties 의 utf-8을 모두 euc-kr로 변경
+
+<img src="https://raw.githubusercontent.com/hugoMGSung/hungout-with-springboot/main/images/sb0002.png" width="500">
