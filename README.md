@@ -28,3 +28,92 @@ Spring Boot 가지고 놀기
     - logging.properties 의 utf-8을 모두 euc-kr로 변경
 
 <img src="https://raw.githubusercontent.com/hugoMGSung/hungout-with-springboot/main/images/sb0002.png" width="500">
+
+### Gradle 설정
+- 콘솔창
+    - gradle init 
+        - 2.application 
+        - 3.Java
+        - multiple subprojects - no
+        - 1.Groovy
+        - 4.JUnit Jupiter
+        - Project name - default
+        - source package - com.hugo83.basicjee
+        - Java verison 17
+        - Generate build using new APIs and behavior - no
+
+- 프로젝트 
+    - webapp 폴더 추가
+    - build.gradle 수정
+
+```
+plugins {
+    // Apply the application plugin to add support for building a CLI application in Java.
+    id 'application'
+}
+
+repositories {
+    // Use Maven Central for resolving dependencies.
+    mavenCentral()
+}
+
+dependencies {
+    // Use JUnit Jupiter for testing.
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.1'
+
+    compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
+    compileOnly 'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
+
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:31.1-jre'
+    implementation 'org.glassfish:javax.json:1.1.4'
+    implementation 'org.apache.logging.log4j:log4j-api:2.20.0'
+    implementation 'org.apache.logging.log4j:log4j-core:2.20.0'
+
+    annotationProcessor 'org.apache.logging.log4j:log4j-api:2.20.0'
+    annotationProcessor 'org.apache.logging.log4j:log4j-core:2.20.0'
+}
+```
+
+    - gradle로 생성한 폴더에서 아래 명령실행, 결과는  BUILD SUCCESSFUL
+```shell
+> .\gradlew tasks
+```
+
+### Tomcat 서버 설정
+- Community Server Connector 
+    - Server Action
+        - Edit Configuration File...
+        - config/server.xml open
+
+```xml
+      <Host name="localhost"  appBase="webapps"
+            unpackWARs="true" autoDeploy="true">
+          <Context path="" docBase="D:/.../src/main/webapp"></Context>
+            ...
+      </Host>
+    </Engine>
+  </Service>
+</Server>
+```
+
+### index.jsp
+```html
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<html lang="ko">
+    <head>
+        <title>VS CODE에서 JSP 동작시키기</title>
+    </head>
+    <body>
+        <h1>첫 페이지입니다.</h1>
+    </body>
+</html>
+```
+
+### Tomcat 서버 실행
+
+실행결과
+
+<img src="https://raw.githubusercontent.com/hugoMGSung/hungout-with-springboot/main/images/sb0003.png" width="500">
