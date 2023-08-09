@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SbStartApplication<sb-start>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.hugo83.sbstart.SbStartApplication",
+            "projectName": "sb-start",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
