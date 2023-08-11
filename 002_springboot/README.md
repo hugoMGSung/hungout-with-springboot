@@ -149,3 +149,34 @@ public class SampleController {
 - 실행결과
 
 <img src="https://raw.githubusercontent.com/hugoMGSung/hungout-with-springboot/main/images/sb0005.png" width="600">
+
+- JSON 데이터 샘플
+    - JsonSanmpleController
+
+```java
+@RestController
+@Log4j2
+public class JsonSampleController {
+    @GetMapping("/helloJson")
+    public String helloJson() {
+        log.info("▶▷▶▷▶▷ hello :: ");
+        return "{ " +
+            " \"CityName\": \"Busan\", " +
+            " \"homeTown\": \"Metro City\", " +
+            " \"formed\": 2023, " +
+            " \"members\": [ " +
+            " { " +
+            "    \"name\": \"Molecule Man\",  " +
+            "    \"age\": 29, " +
+            "    \"secretIdentity\": \"Dan Jukes\", " +
+            "    \"powers\": [\"Radiation resistance\", \"Turning tiny\", \"Radiation blast\" ] " +
+            "  } " +
+            "] " +
+        "} ";
+    }
+}
+```
+
+- 실행결과
+
+<img src="https://raw.githubusercontent.com/hugoMGSung/hungout-with-springboot/main/images/sb0006.png" width="600">

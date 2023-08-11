@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class SampleController {
     @GetMapping(value="/hello")
     public void hello(Model model) {
-        log.info("hello >>>>>>>>>>>>>>>>>>>> ");
+        log.info("▶▷▶▷▶▷ hello :: "); // Custom LOG 잘 확인하려면 특수문자 쓰는 것 추천함
         model.addAttribute("msg", "Hello, SpringBoot!");
     }    
 }
