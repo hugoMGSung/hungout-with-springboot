@@ -61,3 +61,54 @@ logging:
     level:
         org.hibernate.SQL: debug
 ```
+
+- Apps 아래
+    - sb-start Run... 성공함
+    - Lombok 테스트 - build.gradle 추가
+```tex
+	// Lombok을 테스트 환경에도 사용
+	testCompileOnly 'org.projectlombok:lombok'
+	testAnnotationProcessor 'org.projectlombok:lombok'
+}
+```
+
+- 추가 설정
+    - 로그레벨 설정 - build.gradle 변경(확인요)
+
+```tex
+logging:
+    level:
+        org:
+            hibernate:
+                SQL: debug
+            springframework: info
+        com:
+            hugo83: debug
+        
+```
+
+- 의존성 주입 테스트
+    - DataSourceTests 생성
+
+```java
+@SpringBootTest
+@Log4j2
+public class DataSourceTests {
+    @Autowired
+    private DataSource dataSource;
+
+    @Test
+    public void testConnection() throws SQLException {
+        @Cleanup
+        Connection conn = dataSource.getConnection();
+        log.info(conn);
+
+        Assertions.assertNotNull(conn);
+    } 
+}
+```
+
+- 의존성 주입 테스트 
+    - 실행결과
+
+<img src="https://raw.githubusercontent.com/hugoMGSung/hungout-with-springboot/main/images/sb0004.png" width="400">

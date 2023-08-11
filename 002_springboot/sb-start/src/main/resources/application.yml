@@ -14,9 +14,16 @@ spring:
         use-new-id-generator-mappings: false
         show-sql: true
         properties:
-            hibernate.format_sql: true
+            hibernate:
+                format_sql: true
             dialect: org.hibernate.dialect.MySQL8InnoDBDialect
 
 logging:
     level:
-        org.hibernate.SQL: debug
+        org:
+            hibernate:
+                SQL: debug
+            springframework: info
+        com:
+            hugo83: debug
+        
