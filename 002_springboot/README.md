@@ -112,3 +112,40 @@ public class DataSourceTests {
     - 실행결과
 
 <img src="https://raw.githubusercontent.com/hugoMGSung/hungout-with-springboot/main/images/sb0004.png" width="400">
+
+### 웹 개발 Thymeleaf
+
+- Controller 생성
+    - SampleController 클래스
+
+```java
+@Controller
+@Log4j2
+public class SampleController {
+    @GetMapping(value="/hello")
+    public void hello(Model model) {
+        log.info("hello >>>>>>>>>>>>>>>>>>>> ");
+        model.addAttribute("msg", "Hello, SpringBoot!");
+    }    
+}
+```
+
+- View 생성
+    - hello.html 
+```html
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>SpringBoot Hello</title>
+</head>
+<body>
+    <h1 th:text="${msg}"></h1>
+</body>
+</html>
+```
+
+- 실행결과
+
+<img src="https://raw.githubusercontent.com/hugoMGSung/hungout-with-springboot/main/images/sb0005.png" width="600">
