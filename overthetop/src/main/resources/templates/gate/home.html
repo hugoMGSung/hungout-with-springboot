@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/main_base.html}">
+
+<script layout:fragment="custom_head_script" th:inline="javascript">
+	$(document).ready(function () {
+		const sidebarToggle = $('#sidebarToggle');
+		if (sidebarToggle) {
+			sidebarToggle.click(function () {
+				console.log('숨기기');
+				event.preventDefault();
+				document.body.classList.toggle('sb-sidenav-toggled');
+				localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
+			});
+		}
+	});
+</script>
+
+<div layout:fragment="content">
+	<h1>수정중@!@</h1>
+</div>
+
+<script layout:fragment="custom_bottom_script" th:inline="javascript">
+	function searchaction() {
+		const searchtag = document.getElementById("searchtag");
+		var form = document.getElementById("formsearch");
+		var search = document.getElementById("search")
+		console.log(searchtag);
+
+		if (search.value.length <= 0) {
+			alert('검색어를 입력하세요');
+			search.focus();
+			return false;
+		}
+		form.submit();
+	}
+
+	function formAction() {
+		const form = document.getElementById('interestform');
+		form.submit();
+
+	}
+</script>
