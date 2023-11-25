@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/admin_base.html}">
+
+<div layout:fragment="content">
+	<div class="row vh-100">
+		<div class="col-12">
+			<div class="bg-light rounded h-100 p-4">
+				<h6 class="mb-4">책정보 등록</h6>
+				<form action="/books/register" method="post">
+					<div class="row mb-3">
+						<label for="inputTitle" class="col-sm-2 col-form-label">책 제목</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="inputTitle" name="title" placeholder="책 제목을 입력하세요">
+						</div>
+					</div>
+					<div class="row mb-3">
+						<label for="inputWriter" class="col-sm-2 col-form-label">저자명</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="inputWriter" name="writer" placeholder="저자명을 입력하세요">
+						</div>
+					</div>
+					<div class="row mb-3">
+						<label for="inputReleaseDate" class="col-sm-2 col-form-label">출판일</label>
+						<div class="col-sm-10">
+							<input type="date" class="form-control" id="inputReleaseDate" name="releaseDate">
+						</div>
+					</div>
+					<div class="row mb-3">
+						<label for="inputPrice" class="col-sm-2 col-form-label">가격</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-control" id="inputPrice" name="price" min="0" placeholder="책가격을 입력하세요">
+						</div>
+					</div>
+					<!-- <fieldset class="row mb-3">
+							<legend class="col-form-label col-sm-2 pt-0">Radios</legend>
+							<div class="col-sm-10">
+									<div class="form-check">
+											<input class="form-check-input" type="radio" name="gridRadios"
+													id="gridRadios1" value="option1" checked>
+											<label class="form-check-label" for="gridRadios1">
+													First radio
+											</label>
+									</div>
+									<div class="form-check">
+											<input class="form-check-input" type="radio" name="gridRadios"
+													id="gridRadios2" value="option2">
+											<label class="form-check-label" for="gridRadios2">
+													Second radio
+											</label>
+									</div>
+							</div>
+					</fieldset> -->
+					<!-- <div class="row mb-3">
+							<legend class="col-form-label col-sm-2 pt-0">Checkbox</legend>
+							<div class="col-sm-10">
+									<div class="form-check">
+											<input class="form-check-input" type="checkbox" id="gridCheck1">
+											<label class="form-check-label" for="gridCheck1">
+													Check me out
+											</label>
+									</div>
+							</div>
+					</div> -->
+					<div class="float-end">
+						<button type="submit" class="btn btn-primary">등록</button>
+						<a href="/books/list" class="btn btn-secondary">취소</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script layout:fragment="bottomScript" th:inline="javascript">
+	const errors = [[${errors}]];
+	console.log(errors);
+
+	let errorMsg = '';
+
+	if (errors) {
+		for (let i = 0; i < errors.length; i++) {
+			//errorMsg += `${errors[i].field}은(는) ${errors[i].code} \n`;
+			if (errors[i].field == 'releaseDate') {
+				errorMsg += `출판일은 필수입니다 \n`;
+			} else {
+				errorMsg += `${errors[i].defaultMessage} \n`;
+			}
+		}
+		alert(errorMsg);
+	}
+</script>
