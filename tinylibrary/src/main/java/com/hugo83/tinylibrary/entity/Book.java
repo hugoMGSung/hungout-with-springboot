@@ -1,24 +1,32 @@
 package com.hugo83.tinylibrary.entity;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
+import org.hibernate.annotations.BatchSize;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Getter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = "imageSet")
 public class Book extends BaseEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,5 +49,21 @@ public class Book extends BaseEntity {
 		this.writer = writer;
 		this.releaseDate = releaseDate;
 		this.price = price;
+	}
+
+	@OneToMany(mappedBy = "book", cascade = {
+			CascadeType.ALL }, fetch = FetchType.LAZY, orphanRemoval = true)
+	@Builder.Default
+	@BatchSize(size = 20)
+	private Set<BookImage> imageSet = new HashSet<>();
+
+	public void addImage(String uuid, String fileName) {
+		BookImage bookImage = BookImage.builder().uuid(uuid).fileName(fileName).book(this).ord(imageSet.size()).build();
+		imageSet.add(bookImage);
+	}
+
+	public void clearImages() {
+		imageSet.forEach(bookImage -> bookImage.changeBook(null));
+		this.imageSet.clear();
 	}
 }

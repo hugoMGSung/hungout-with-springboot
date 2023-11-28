@@ -1,237 +1,346 @@
 <!DOCTYPE html>
-<html lang="ko" 
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
-    <title>DASHMIN - TinyLibrary</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="TinyLibrary test" name="keywords">
-    <meta content="TinyLibrary 테스트용, by PKNU. 2024" name="description">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+	<meta name="author" content="AdminKit">
+	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
 
-    <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="shortcut icon" th:href="@{/img/icons/icon-48x48.png}" />
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="canonical" href="https://demo-basic.adminkit.io/ui-forms.html" />
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+	<title>Forms | AdminKit Demo</title>
 
-    <!-- Libraries Stylesheet URL 주소가 아닌 곳은 Thymeleaf로 변경 -->
-    <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
-    <link th:href="@{/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css}" rel="stylesheet" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link th:href="@{/css/app.css}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+			integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
+			crossorigin="anonymous"></script>
 
-    <!-- Template Stylesheet -->
-    <link th:href="@{/css/style.css}" rel="stylesheet">
-
-	<!-- 페이지 마다 필요한 JS 영역 -->
-	<th:block layout:fragment="headScript">
-		<!-- TODO -->
+	<th:block layout:fragment="headerScript">
+		<!-- TODO BOTTOM SCRIPT -->
 	</th:block>
 </head>
 
 <body>
-    <div class="container-xxl position-relative bg-white d-flex p-0">
-        <!-- Spinner Start -->
-        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-            <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-        </div>
-        <!-- Spinner End -->
+	<div class="wrapper">
+		<nav id="sidebar" class="sidebar js-sidebar">
+			<div class="sidebar-content js-simplebar">
+				<a class="sidebar-brand" th:href="@{/index.html}">
+				<span class="align-middle">AdminKit</span>
+				</a>
 
+				<ul class="sidebar-nav">
+					<li class="sidebar-header">
+						Pages
+					</li>
 
-        <!-- Sidebar Start -->
-        <div class="sidebar pe-4 pb-3">
-            <nav class="navbar bg-light navbar-light">
-                <a th:href="@{/index.html}" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>DASHMIN</h3>
-                </a>
-                <div class="d-flex align-items-center ms-4 mb-4">
-                    <div class="position-relative">
-                        <img class="rounded-circle" th:src="@{/img/user.jpg}" alt="" style="width: 40px; height: 40px;">
-                        <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
-                    </div>
-                    <div class="ms-3">
-                        <h6 class="mb-0">Jhon Doe</h6>
-                        <span>Admin</span>
-                    </div>
-                </div>
-                <div class="navbar-nav w-100">
-                    <a th:href="@{/index.html}" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a th:href="@{/button.html}" class="dropdown-item">Buttons</a>
-                            <a th:href="@{/typography.html}" class="dropdown-item">Typography</a>
-                            <a th:href="@{/element.html}" class="dropdown-item">Other Elements</a>
-                        </div>
-                    </div>
-                    <a th:href="@{/widget.html}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
-                    <a th:href="@{/form.html}" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
-                    <a th:href="@{/table.html}" class="nav-item nav-link active"><i class="fa fa-table me-2"></i>Tables</a>
-                    <a th:href="@{/chart.html}" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
-                        <div class="dropdown-menu bg-transparent border-0">
-                            <a th:href="@{/signin.html}" class="dropdown-item">Sign In</a>
-                            <a th:href="@{/signup.html}" class="dropdown-item">Sign Up</a>
-                            <a th:href="@{/404.html}" class="dropdown-item">404 Error</a>
-                            <a th:href="@{/blank.html}" class="dropdown-item">Blank Page</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <!-- Sidebar End -->
+					<li class="sidebar-item">
+						<a class="sidebar-link" th:href="@{/index.html}">
+						<i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+						</a>
+					</li>
 
+					<li class="sidebar-item">
+						<a class="sidebar-link" th:href="@{/pages-profile.html}">
+						<i class="align-middle" data-feather="user"></i> <span class="align-middle">Profile</span>
+						</a>
+					</li>
 
-        <!-- Content Start -->
-        <div class="content">
-            <!-- Navbar Start -->
-            <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
-                <a th:href="@{/index.html}" class="navbar-brand d-flex d-lg-none me-4">
-                    <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
-                </a>
-                <a href="#" class="sidebar-toggler flex-shrink-0">
-                    <i class="fa fa-bars"></i>
-                </a>
-                <form class="d-none d-md-flex ms-4">
-                    <input class="form-control border-0" type="search" placeholder="Search">
-                </form>
-                <div class="navbar-nav align-items-center ms-auto">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa fa-envelope me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Message</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" th:src="@{/img/user.jpg}" alt="" style="width: 40px; height: 40px;">
-                                    <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" th:src="@{/img/user.jpg}" alt="" style="width: 40px; height: 40px;">
-                                    <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <div class="d-flex align-items-center">
-                                    <img class="rounded-circle" th:src="@{/img/user.jpg}" alt="" style="width: 40px; height: 40px;">
-                                    <div class="ms-2">
-                                        <h6 class="fw-normal mb-0">Jhon send you a message</h6>
-                                        <small>15 minutes ago</small>
-                                    </div>
-                                </div>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item text-center">See all message</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <i class="fa fa-bell me-lg-2"></i>
-                            <span class="d-none d-lg-inline-flex">Notificatin</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Profile updated</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">New user added</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                <h6 class="fw-normal mb-0">Password changed</h6>
-                                <small>15 minutes ago</small>
-                            </a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item text-center">See all notifications</a>
-                        </div>
-                    </div>
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            <img class="rounded-circle me-lg-2" th:src="@{/img/user.jpg}" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">John Doe</span>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <a href="#" class="dropdown-item">My Profile</a>
-                            <a href="#" class="dropdown-item">Settings</a>
-                            <a href="#" class="dropdown-item">Log Out</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-            <!-- Navbar End -->
+					<li class="sidebar-item">
+						<a class="sidebar-link" th:href="@{/pages-sign-in.html}">
+						<i class="align-middle" data-feather="log-in"></i> <span class="align-middle">Sign In</span>
+						</a>
+					</li>
 
-            <!-- Table Start (이부분을 주석처리 실제화면으로 옮겨야함) -->
-            <div class="container-fluid pt-4 px-4" layout:fragment="content">
-                
-            </div>
-            <!-- Table End -->
+					<li class="sidebar-item">
+						<a class="sidebar-link" th:href="@{/pages-sign-up.html}">
+						<i class="align-middle" data-feather="user-plus"></i> <span class="align-middle">Sign Up</span>
+						</a>
+					</li>
 
+					<li class="sidebar-item">
+						<a class="sidebar-link" th:href="@{/pages-blank.html}">
+						<i class="align-middle" data-feather="book"></i> <span class="align-middle">Blank</span>
+						</a>
+					</li>
 
-            <!-- Footer Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="bg-light rounded-top p-4">
-                    <div class="row">
-                        <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">PKNU TinyLibrary</a>, All Right Reserved. 
-                        </div>
-                        <div class="col-12 col-sm-6 text-center text-sm-end">
-                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Footer End -->
-        </div>
-        <!-- Content End -->
+					<li class="sidebar-header">
+						Tools & Components
+					</li>
 
-        <!-- Back to Top -->
-        <!-- <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a> -->
-    </div>
+					<li class="sidebar-item">
+						<a class="sidebar-link" th:href="@{/ui-buttons.html}">
+						<i class="align-middle" data-feather="square"></i> <span class="align-middle">Buttons</span>
+						</a>
+					</li>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script th:src="@{/lib/chart/chart.min.js}"></script>
-    <script th:src="@{/lib/easing/easing.min.js}"></script>
-    <script th:src="@{/lib/waypoints/waypoints.min.js}"></script>
-    <script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
-    <script th:src="@{/lib/tempusdominus/js/moment.min.js}"></script>
-    <script th:src="@{/lib/tempusdominus/js/moment-timezone.min.js}"></script>
-    <script th:src="@{/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js}"></script>
+					<li class="sidebar-item active">
+						<a class="sidebar-link" th:href="@{/ui-forms.html}">
+						<i class="align-middle" data-feather="check-square"></i> <span class="align-middle">Forms</span>
+						</a>
+					</li>
 
-    <!-- Template Javascript -->
-    <script th:src="@{/js/main.js}"></script>
+					<li class="sidebar-item">
+						<a class="sidebar-link" th:href="@{/ui-cards.html}">
+						<i class="align-middle" data-feather="grid"></i> <span class="align-middle">Cards</span>
+						</a>
+					</li>
 
-    <!-- 페이지 마다 필요한 JS 영역 -->
-    <th:block layout:fragment="bottomScript">
-        <!-- TODO -->
-    </th:block>
+					<li class="sidebar-item">
+						<a class="sidebar-link" th:href="@{/ui-typography.html}">
+						<i class="align-middle" data-feather="align-left"></i> <span class="align-middle">Typography</span>
+						</a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" th:href="@{/icons-feather.html}">
+						<i class="align-middle" data-feather="coffee"></i> <span class="align-middle">Icons</span>
+						</a>
+					</li>
+
+					<li class="sidebar-header">
+						Plugins & Addons
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" th:href="@{/charts-chartjs.html}">
+						<i class="align-middle" data-feather="bar-chart-2"></i> <span class="align-middle">Charts</span>
+						</a>
+					</li>
+
+					<li class="sidebar-item">
+						<a class="sidebar-link" th:href="@{/maps-google.html}">
+						<i class="align-middle" data-feather="map"></i> <span class="align-middle">Maps</span>
+						</a>
+					</li>
+				</ul>
+
+				<div class="sidebar-cta">
+					<div class="sidebar-cta-content">
+						<strong class="d-inline-block mb-2">Upgrade to Pro</strong>
+						<div class="mb-3 text-sm">
+							Are you looking for more components? Check out our premium version.
+						</div>
+						<div class="d-grid">
+							<a th:href="@{/upgrade-to-pro.html}" class="btn btn-primary">Upgrade to Pro</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+
+		<div class="main">
+			<nav class="navbar navbar-expand navbar-light navbar-bg">
+				<a class="sidebar-toggle js-sidebar-toggle">
+				<i class="hamburger align-self-center"></i>
+				</a>
+
+				<div class="navbar-collapse collapse">
+					<ul class="navbar-nav navbar-align">
+						<li class="nav-item dropdown">
+							<a class="nav-icon dropdown-toggle" href="#" id="alertsDropdown" data-bs-toggle="dropdown">
+								<div class="position-relative">
+									<i class="align-middle" data-feather="bell"></i>
+									<span class="indicator">4</span>
+								</div>
+							</a>
+							<div id="popUpAlertsDropdown" class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="alertsDropdown">
+								<div class="dropdown-menu-header">
+									4 New Notifications
+								</div>
+								<div class="list-group">
+									<a href="#" class="list-group-item">
+										<div class="row g-0 align-items-center">
+											<div class="col-2">
+												<i class="text-danger" data-feather="alert-circle"></i>
+											</div>
+											<div class="col-10">
+												<div class="text-dark">Update completed</div>
+												<div class="text-muted small mt-1">Restart server 12 to complete the update.</div>
+												<div class="text-muted small mt-1">30m ago</div>
+											</div>
+										</div>
+									</a>
+									<a href="#" class="list-group-item">
+										<div class="row g-0 align-items-center">
+											<div class="col-2">
+												<i class="text-warning" data-feather="bell"></i>
+											</div>
+											<div class="col-10">
+												<div class="text-dark">Lorem ipsum</div>
+												<div class="text-muted small mt-1">Aliquam ex eros, imperdiet vulputate hendrerit et.</div>
+												<div class="text-muted small mt-1">2h ago</div>
+											</div>
+										</div>
+									</a>
+									<a href="#" class="list-group-item">
+										<div class="row g-0 align-items-center">
+											<div class="col-2">
+												<i class="text-primary" data-feather="home"></i>
+											</div>
+											<div class="col-10">
+												<div class="text-dark">Login from 192.186.1.8</div>
+												<div class="text-muted small mt-1">5h ago</div>
+											</div>
+										</div>
+									</a>
+									<a href="#" class="list-group-item">
+										<div class="row g-0 align-items-center">
+											<div class="col-2">
+												<i class="text-success" data-feather="user-plus"></i>
+											</div>
+											<div class="col-10">
+												<div class="text-dark">New connection</div>
+												<div class="text-muted small mt-1">Christina accepted your request.</div>
+												<div class="text-muted small mt-1">14h ago</div>
+											</div>
+										</div>
+									</a>
+								</div>
+								<div class="dropdown-menu-footer">
+									<a href="#" class="text-muted">Show all notifications</a>
+								</div>
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-icon dropdown-toggle" href="#" id="messagesDropdown" data-bs-toggle="dropdown">
+								<div class="position-relative">
+									<i class="align-middle" data-feather="message-square"></i>
+								</div>
+							</a>
+							<div id="popupMssagesDropdown" class="dropdown-menu dropdown-menu-lg dropdown-menu-end py-0" aria-labelledby="messagesDropdown">
+								<div class="dropdown-menu-header">
+									<div class="position-relative">
+										4 New Messages
+									</div>
+								</div>
+								<div class="list-group">
+									<a href="#" class="list-group-item">
+										<div class="row g-0 align-items-center">
+											<div class="col-2">
+												<img th:src="@{/img/avatars/avatar-5.jpg}" class="avatar img-fluid rounded-circle" alt="Vanessa Tucker">
+											</div>
+											<div class="col-10 ps-2">
+												<div class="text-dark">Vanessa Tucker</div>
+												<div class="text-muted small mt-1">Nam pretium turpis et arcu. Duis arcu tortor.</div>
+												<div class="text-muted small mt-1">15m ago</div>
+											</div>
+										</div>
+									</a>
+									<a href="#" class="list-group-item">
+										<div class="row g-0 align-items-center">
+											<div class="col-2">
+												<img th:src="@{/img/avatars/avatar-2.jpg}" class="avatar img-fluid rounded-circle" alt="William Harris">
+											</div>
+											<div class="col-10 ps-2">
+												<div class="text-dark">William Harris</div>
+												<div class="text-muted small mt-1">Curabitur ligula sapien euismod vitae.</div>
+												<div class="text-muted small mt-1">2h ago</div>
+											</div>
+										</div>
+									</a>
+									<a href="#" class="list-group-item">
+										<div class="row g-0 align-items-center">
+											<div class="col-2">
+												<img th:src="@{/img/avatars/avatar-4.jpg}" class="avatar img-fluid rounded-circle" alt="Christina Mason">
+											</div>
+											<div class="col-10 ps-2">
+												<div class="text-dark">Christina Mason</div>
+												<div class="text-muted small mt-1">Pellentesque auctor neque nec urna.</div>
+												<div class="text-muted small mt-1">4h ago</div>
+											</div>
+										</div>
+									</a>
+									<a href="#" class="list-group-item">
+										<div class="row g-0 align-items-center">
+											<div class="col-2">
+												<img th:src="@{/img/avatars/avatar-3.jpg}" class="avatar img-fluid rounded-circle" alt="Sharon Lessman">
+											</div>
+											<div class="col-10 ps-2">
+												<div class="text-dark">Sharon Lessman</div>
+												<div class="text-muted small mt-1">Aenean tellus metus, bibendum sed, posuere ac, mattis non.</div>
+												<div class="text-muted small mt-1">5h ago</div>
+											</div>
+										</div>
+									</a>
+								</div>
+								<div class="dropdown-menu-footer">
+									<a href="#" class="text-muted">Show all messages</a>
+								</div>
+							</div>
+						</li>
+						<li class="nav-item dropdown">
+							<a class="nav-icon dropdown-toggle d-inline-block d-sm-none" href="#" data-bs-toggle="dropdown">
+								<i class="align-middle" data-feather="settings"></i>
+							</a>
+
+							<a class="nav-link dropdown-toggle d-none d-sm-inline-block" href="#" data-bs-toggle="dropdown" id="profileDropdown">
+								<img th:src="@{/img/avatars/avatar.jpg}" class="avatar img-fluid rounded me-1" alt="Charles Hall" /> <span class="text-dark">Charles Hall</span>
+							</a>
+							<div class="dropdown-menu dropdown-menu-end" id="popUpProfile">
+								<a class="dropdown-item" th:href="@{/pages-profile.html}"><i class="align-middle me-1" data-feather="user"></i> Profile</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="pie-chart"></i> Analytics</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" th:href="@{/index.html}"><i class="align-middle me-1" data-feather="settings"></i> Settings & Privacy</a>
+								<a class="dropdown-item" href="#"><i class="align-middle me-1" data-feather="help-circle"></i> Help Center</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#">Log out</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</nav>
+
+			<main class="content" layout:fragment="content">
+			</main>
+
+			<footer class="footer">
+				<div class="container-fluid">
+					<div class="row text-muted">
+						<div class="col-6 text-start">
+							<p class="mb-0">
+								<a class="text-muted" href="https://adminkit.io/" target="_blank"><strong>AdminKit</strong></a> &copy;
+							</p>
+						</div>
+						<div class="col-6 text-end">
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Support</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Help Center</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Privacy</a>
+								</li>
+								<li class="list-inline-item">
+									<a class="text-muted" href="https://adminkit.io/" target="_blank">Terms</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</div>
+
+	<script th:src="@{/js/app.js}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+			integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+	<th:block layout:fragment="bottomScript">
+		<!-- TODO BOTTOM SCRIPT -->
+	</th:block>
 </body>
+
 </html>

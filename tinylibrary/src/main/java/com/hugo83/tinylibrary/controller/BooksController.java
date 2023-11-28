@@ -1,5 +1,12 @@
 package com.hugo83.tinylibrary.controller;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +29,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Log4j2
 @RequiredArgsConstructor
 public class BooksController {
+
+	@Value("${com.hugo83.upload.path}")
+	private String uploadPath;
+	
 	private final BookService bookService;
 
 	@GetMapping("/list")
@@ -85,9 +96,37 @@ public class BooksController {
 	@PostMapping(value = "/remove")
 	public String remove(Long bookId, RedirectAttributes redirectAttributes) {
 		log.info("REMOVE POST ::::: " + bookId);
+		BookDTO bookDTO = bookService.readOne(bookId);
 
 		bookService.remove(bookId);
+
+		// 게시물이 삭제되었다면 첨부파일 삭제
+		log.info(bookDTO.getFileNames());
+		List<String> fileNames = bookDTO.getFileNames();
+		if (fileNames != null && fileNames.size() > 0) {
+			removeFiles(fileNames);
+		}
 		redirectAttributes.addFlashAttribute("result", "removed");
 		return "redirect:/books/list";
+	}
+
+	public void removeFiles(List<String> files) {
+		for (String fileName:files) {
+			Resource resource = new FileSystemResource(uploadPath + File.separator + fileName);
+			String resourceName = resource.getFilename();
+
+			try {
+				String contentType = Files.probeContentType(resource.getFile().toPath());
+				resource.getFile().delete();
+
+				//섬네일이 존재한다면
+				if (contentType.startsWith("image")) {
+					File thumbnailFile = new File(uploadPath + File.separator + "s_" + fileName);
+					thumbnailFile.delete();
+				}
+			} catch (Exception e) {
+				log.error(e.getMessage());
+			}
+		}//end for
 	}
 }

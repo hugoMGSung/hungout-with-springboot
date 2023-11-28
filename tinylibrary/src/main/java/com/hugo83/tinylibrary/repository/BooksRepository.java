@@ -1,5 +1,9 @@
 package com.hugo83.tinylibrary.repository;
 
+// import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -13,4 +17,8 @@ public interface BooksRepository extends JpaRepository<Book, Long> {
 	String getVersion();
 
 	BookDTO save(java.awt.print.Book book);
+
+	@EntityGraph(attributePaths = { "imageSet" })
+	@Query("SELECT b FROM Book b WHERE b.bookId = :bookId")
+	Optional<Book> findByIdWithImages(Long bookId);
 }

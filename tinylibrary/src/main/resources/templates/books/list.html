@@ -63,7 +63,8 @@
 		</div>
 	</div>
 
-
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<script src="/js/upload.js"></script>
 <script>
 	
 
@@ -97,6 +98,34 @@
 </div>
 
 <script layout:fragment="bottomScript" th:inline="javascript">
+	// jQuery로 드롭다운 부분 재처리하기
+	$("#alertsDropdown").click(function() {
+		if($(this).hasClass("show")){
+			$(this).removeClass("show");
+
+		}else{
+			$(this).addClass("show");
+		}
+	});
+
+	$("#messagesDropdown").click(function() {
+		if($(this).hasClass("show")){
+			$(this).removeClass("show");
+
+		}else{
+			$(this).addClass("show");
+		}
+	});
+
+	$("#profileDropdown").click(function() {
+		if($(this).hasClass("show")){
+			$(this).removeClass("show");
+
+		}else{
+			$(this).addClass("show");
+		}
+	});
+
 	document.querySelector(".pagination").addEventListener("click", function (e) {
 	 	e.preventDefault();
 	 	e.stopPropagation();

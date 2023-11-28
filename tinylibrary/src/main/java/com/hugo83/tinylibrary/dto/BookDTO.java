@@ -1,5 +1,6 @@
 package com.hugo83.tinylibrary.dto;
 
+import java.util.List;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -31,4 +32,7 @@ public class BookDTO {
 	private Integer price;
 	private LocalDateTime regDate;
 	private LocalDateTime modDate;
+
+	// 첨부파일 리스트
+	private List<String> fileNames;
 }
