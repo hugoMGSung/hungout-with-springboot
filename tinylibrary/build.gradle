@@ -29,6 +29,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// Spring Boot Security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	// Spring Boot RestAPI
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2'
 	// Lombok 기본/ 테스트

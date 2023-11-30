@@ -14,6 +14,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -66,4 +68,8 @@ public class Book extends BaseEntity {
 		imageSet.forEach(bookImage -> bookImage.changeBook(null));
 		this.imageSet.clear();
 	}
+
+	@ManyToOne
+	@JoinColumn(name = "email", referencedColumnName = "email")
+	private Member member;
 }
