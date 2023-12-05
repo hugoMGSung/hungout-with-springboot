@@ -112,7 +112,7 @@
 		}
 	});
 
-	const errors = [[${errors}]];  // [[${errors}]] 는 thymeleaf 문법이라 변경불가(어쩔 수 없음)
+	const errors = [[${errors}]];  // [[${errors}]] 는 thymeleaf 문법이라 변경불가(어쩔 수 없음) '' 문자열로 감싸야 함. 
 	console.log(errors);
 
 	let errorMsg = '';

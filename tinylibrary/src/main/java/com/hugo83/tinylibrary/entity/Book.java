@@ -72,4 +72,8 @@ public class Book extends BaseEntity {
 	@ManyToOne
 	@JoinColumn(name = "email", referencedColumnName = "email")
 	private Member member;
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
 }

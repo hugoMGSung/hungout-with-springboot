@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="Responsive Admin &amp; Dashboard Template based on Bootstrap 5">
+	<meta name="author" content="AdminKit">
+	<meta name="keywords" content="adminkit, bootstrap, bootstrap 5, admin, dashboard, template, responsive, css, sass, html, theme, front-end, ui kit, web">
+
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link rel="shortcut icon" th:href="@{/img/icons/icon-48x48.png}" />
+
+	<link rel="canonical" href="https://demo-basic.adminkit.io/pages-sign-up.html" />
+
+	<title>회원가입 | AdminKit Demo</title>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link th:href="@{/css/app.css}" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+	<!-- font awesome  -->
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" 
+		integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+
+
+	<script src="https://code.jquery.com/jquery-3.7.1.slim.min.js"
+			integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8="
+			crossorigin="anonymous"></script>
+	<script>
+		$(document).ready(function() {
+			$('#email').focus();
+		});
+	</script>
+</head>
+
+<body>
+	<main class="d-flex w-100">
+		<div class="container d-flex flex-column">
+			<div class="row vh-100">
+				<div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
+					<div class="d-table-cell align-middle">
+
+						<div class="text-center mt-4">
+							<h1 class="h2">회원가입</h1>
+							<p class="lead">
+								Start creating the best possible user experience for you customers.
+							</p>
+						</div>
+
+						<div class="card">
+							<div class="card-body">
+								<div class="m-sm-4">
+									<form action="/member/join" method="post" class="row g-3 validated-form" novalidate>
+										<div class="mb-3">
+											<label class="form-label">이메일</label>
+											<input class="form-control form-control-lg" type="email" id="email" name="email" placeholder="이메일 입력" required />
+											<div class="invalid-feedback">
+												이메일은 필수입니다.
+											</div>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">이름</label>
+											<input class="form-control form-control-lg" type="text" name="mName" placeholder="이름입력" required />
+											<div class="invalid-feedback">
+												이름은 필수입니다.
+											</div>
+										</div>
+										<div class="mb-3">
+											<label class="form-label">패스워드</label>
+											<div class="input-group">
+												<input name="password" type="password" value="" class="input form-control form-control-lg" id="password" placeholder="패스워드 입력" required="true" aria-label="password" aria-describedby="basic-addon1" />
+												<div class="input-group-append input-group-lg">
+													<span class="input-group-text" style="height: 37px;" onclick="password_show_hide();">
+														<i class="fas fa-eye" id="show_eye"></i>
+														<i class="fas fa-eye-slash d-none" id="hide_eye"></i>
+													</span>
+												</div>
+											</div>
+											
+											<div class="invalid-feedback">
+												패스워드는 필수입니다.
+											</div>
+										</div>
+										<div class="text-center mt-3">
+											<button type="submit" class="btn btn-primary">회원가입</button>
+											<a th:href="@{/member/login}" class="btn btn-secondary">취소</a>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+
+	<script th:src="@{/js/app.js}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 
+			integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<script>
+		const error = '[[${error}]]'; // 이렇게 해야 하는게 오류가 나있었다!!!!
+		if (error) {
+			alert('[[${errmsg}]]');
+		} 
+
+		function password_show_hide() {
+			var x = document.getElementById("password");
+			var show_eye = document.getElementById("show_eye");
+			var hide_eye = document.getElementById("hide_eye");
+			hide_eye.classList.remove("d-none");
+			if (x.type === "password") {
+				x.type = "text";
+				show_eye.style.display = "none";
+				hide_eye.style.display = "block";
+			} else {
+				x.type = "password";
+				show_eye.style.display = "block";
+				hide_eye.style.display = "none";
+			}
+		}
+
+		// Example starter JavaScript for disabling form submissions if there are invalid fields
+		(() => {
+			"use strict";
+
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			const forms = document.querySelectorAll(".validated-form");
+
+			// Loop over them and prevent submission
+			Array.from(forms).forEach((form) => {
+			form.addEventListener(
+				"submit",
+				(event) => {
+				if (!form.checkValidity()) {
+					event.preventDefault();
+					event.stopPropagation();
+				}
+
+				form.classList.add("was-validated");
+				},
+				false
+			);
+			});
+		})();
+	</script>
+</body>
+
+</html>

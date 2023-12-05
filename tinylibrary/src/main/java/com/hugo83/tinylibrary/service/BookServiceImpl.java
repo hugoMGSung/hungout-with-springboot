@@ -15,6 +15,7 @@ import com.hugo83.tinylibrary.dto.BookListAllDTO;
 import com.hugo83.tinylibrary.dto.PageRequestDTO;
 import com.hugo83.tinylibrary.dto.PageResponseDTO;
 import com.hugo83.tinylibrary.entity.Book;
+import com.hugo83.tinylibrary.entity.Member;
 import com.hugo83.tinylibrary.repository.BooksRepository;
 
 import jakarta.transaction.Transactional;
@@ -31,11 +32,15 @@ public class BookServiceImpl implements BookService {
 
 	private final BooksRepository booksRepository;
 
+	private final MemberService memberService;
+
 	@Override
 	public Long register(BookDTO bookDTO) {
 		// Book book = modelMapper.map(bookDTO, Book.class);
 		// Long bookId = booksRepository.save(book).getBookId();
 		Book book = dtoToEntity(bookDTO);
+		Member member = memberService.getMemberFromEail(bookDTO.getEmail());
+		book.setMember(member);
 		Long bookId = booksRepository.save(book).getBookId();
 
 		log.info("BookService register ::: " + bookId);

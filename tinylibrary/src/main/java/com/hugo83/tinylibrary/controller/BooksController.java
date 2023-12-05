@@ -2,11 +2,13 @@ package com.hugo83.tinylibrary.controller;
 
 import java.io.File;
 import java.nio.file.Files;
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -43,12 +45,13 @@ public class BooksController {
 		model.addAttribute("responseDTO", responseDTO);
 	}
 
+	@PreAuthorize("hasRole('USER')")
 	@GetMapping(value = "/register")
 	public void getRegister() {
 	}
 
 	@PostMapping(value = "/register")
-	public String postRegister(@Valid BookDTO bookDTO, BindingResult bindingResult,
+	public String postRegister(@Valid BookDTO bookDTO, BindingResult bindingResult, Principal princial,
 			RedirectAttributes redirectAttributes) {
 		log.info("Books POST register");
 
@@ -59,6 +62,8 @@ public class BooksController {
 		}
 
 		log.info("bookDTO :::::: " + bookDTO);
+		log.info("Principal :::: " + princial.getName());
+		bookDTO.setEmail(princial.getName());
 		Long bookId = bookService.register(bookDTO);
 		redirectAttributes.addFlashAttribute("result", bookId);
 		return "redirect:/books/list";

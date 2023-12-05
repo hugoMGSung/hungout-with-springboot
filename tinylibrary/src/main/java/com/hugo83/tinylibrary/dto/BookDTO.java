@@ -33,6 +33,8 @@ public class BookDTO {
 	private LocalDateTime regDate;
 	private LocalDateTime modDate;
 
+	private String email;
+
 	// 첨부파일 리스트
 	private List<String> fileNames;
 }
