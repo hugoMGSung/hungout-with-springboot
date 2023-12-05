@@ -27,3 +27,6 @@ replay_pid*
 */.gitignore
 */.gitattributes
 */.vscode/
+
+## 하위 프로젝트 react 관련 폴더
+*/node_modules/
