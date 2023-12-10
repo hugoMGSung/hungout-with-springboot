@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.hugo83.toybatis.mapper.UserMapper">
+	<!-- <cache /> -->
+
 	<select id="findAll" resultType="HashMap"> 
 		select * from tb_user 
 	</select>
@@ -16,10 +18,41 @@
 		 WHERE idx=#{idx}
 	</select>
 
+	<select id="findByEmail" resultType="com.hugo83.toybatis.domain.User"> 
+		SELECT idx, email, PASSWORD,
+			   reg_date, mod_date 
+		  FROM tb_user 
+		 WHERE email=#{email} 
+	</select>
+
 	<!-- <insert id="saveUser" parameterType="com.hugo83.toybatis.domain.User" useGeneratedKeys="true"
 		keyProperty="Idx"> -->
 	<insert id="saveUser" parameterType="com.hugo83.toybatis.domain.User"> 
 		INSERT INTO tb_user (email, password, reg_date, mod_date) 
 		VALUES (#{email}, #{password}, now(), now()) 
 	</insert>
+
+	<update id="updateUser" parameterType="com.hugo83.toybatis.domain.User">
+		UPDATE tb_user SET email=#{email}, password=#{password}, mod_date=now()
+		 WHERE idx=#{idx}
+	</update> 
+
+	<delete id="deleteByIdx" parameterType="long">
+		DELETE FROM tb_user WHERE idx=#{idx}
+	</delete>
+
+	<select id="findAllWithPaging" resultType="com.hugo83.toybatis.domain.User">
+		SELECT * FROM tb_user 
+		 ORDER BY idx LIMIT #{limit}
+		OFFSET #{offset} 
+	</select>
+
+	<select id="findAllSortedBy" resultType="com.hugo83.toybatis.domain.User">
+		SELECT * FROM tb_user ORDER BY ${orderBy} 
+	</select>
+
+	<select id="searchUser" resultType="com.hugo83.toybatis.domain.User">
+		SELECT * FROM tb_user 
+		 WHERE email LIKE #{keyword} 
+	</select>
 </mapper>

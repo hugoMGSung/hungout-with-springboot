@@ -23,6 +23,7 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	// Spring Boot 추가 라이브러리
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.0'
+	// implementation 'org.springframework.boot:spring-boot-starter-cache'
 	// Lombok 기본/ 테스트
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'

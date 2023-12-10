@@ -18,5 +18,17 @@ public interface UserMapper {
 
 	User findByIdx(Long idx);
 
+	User findByEmail(String email);
+
 	void saveUser(User userDto);
+
+	void updateUser(User user);
+
+	void deleteByIdx(Long idx);
+
+	List<User> findAllWithPaging(int offset, int limit);
+
+	List<User> findAllSortedBy(String orderBy);
+
+	List<User> searchUser(String keyword);
 }
