@@ -1,10 +1,10 @@
-package com.hugo83.nitflex;
+package com.hugo83.toybatis;
 
 // import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class NitflexApplicationTests {
+class ToybatisApplicationTests {
 
 	// @Test
 	// void contextLoads() {
