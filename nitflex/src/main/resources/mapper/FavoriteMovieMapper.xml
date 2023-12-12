@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hugo83.nitflex.mapper.FavoriteMovieMapper">
+	<!-- 로그인한 유저에따라 자기가 찜한 목록 보여주기 -->
+	<select id="fetchMovie" resultType="com.hugo83.nitflex.domain.FavoriteMovieVO">
+		SELECT *
+		  FROM nf_favorite_movie
+		 WHERE user_idx = #{user_idx} 
+		 ORDER BY idx
+	</select>
+
+	<select id="isMovieByMovieAndUser" resultType="Integer">
+		SELECT COUNT(*) CNT
+		  FROM nf_favorite_movie
+		 WHERE movie_id = #{movie_id} 
+		   AND user_idx = #{user_idx}
+	</select>
+
+	<select id="isMovieByMovie" resultType="Integer">
+		SELECT COUNT(*) CNT
+		  FROM nf_favorite_movie
+		 WHERE movie_id = #{movie_id}
+	</select>
+
+	<insert id="addMovie" parameterType="com.hugo83.nitflex.domain.FavoriteMovieVO">
+		INSERT INTO nf_favorite_movie
+					(user_idx, movie_id, movie_original_title, poster_path, reg_date, mod_date)
+			 VALUES (#{user_idx}, #{movie_id}, #{movie_original_title}, #{poster_path}, now(), now())
+	</insert>
+
+	<delete id="removeMovieByIdx" parameterType="Long">
+		DELETE FROM nf_favorite_movie
+		 WHERE idx = #{idx}
+	</delete>
+
+	<delete id="removeMovieByMovieId" parameterType="Long">
+		DELETE FROM nf_favorite_movie
+		 WHERE movie_id=#{movie_id}
+	</delete>
+
+</mapper>

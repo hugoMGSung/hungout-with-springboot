@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan(value = "com.hugo83.toybatis", sqlSessionFactoryRef = "SqlSessionFactory")
+@MapperScan(value = "com.hugo83.nitflex", sqlSessionFactoryRef = "SqlSessionFactory")
 public class MyBatisConfig {
 	@Value("${spring.datasource.mapper-locations}")
 	String mPath;
