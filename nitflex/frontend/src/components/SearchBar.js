@@ -6,11 +6,10 @@ class SearchBar extends Component {
         return (
             <div>
                 <form className="form-inline" action="">
-                    <div className="input-field0">
+                    <div className="d-inline-flex">
                         <input
                             className="form-control mr-sm-2"
-                            type="text" placeholder="Search"
-                        />
+                            type="text" placeholder="Search" />
                         <button
                             className="btn btn-success"
                             type="submit"
