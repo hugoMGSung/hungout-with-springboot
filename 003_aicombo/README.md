@@ -47,3 +47,31 @@
 
 #### 세번째 문서화
 - FastAPI는 자동으로  API 문서를 생성함
+
+- 실행결과
+
+    <img src="../images/sb0010.png" width="700">
+
+#### 네번째 FastAPI 미들웨어
+- Request, Response 사이에 특정 작업 수행에 사용되는 함수와 클래스
+- 로그파일 남기게 처리
+
+- 실행결과
+
+    <img src="../images/sb0011.png" width="700">
+
+#### 다섯번째 종합
+- 실행포트 변경하는 방법
+
+```shell
+> uvicorn total_app:app --host 0.0.0.0 --port 8080
+```
+
+- 실행
+    1. 기본 실행 후
+    2. PostMan에서 Post로 데이터 입력
+    3. 브라우저에서 Get으로 확인
+
+    <img src="../images/sb0013.png" width="700">
+
+    <img src="../images/sb0012.png" width="700">
