@@ -67,6 +67,9 @@
 > uvicorn total_app:app --host 0.0.0.0 --port 8080
 ```
 
+- 설정
+    - Chrome 확장 프로그램중 JSON Viewer 설치
+
 - 실행
     1. 기본 실행 후
     2. PostMan에서 Post로 데이터 입력
@@ -75,3 +78,40 @@
     <img src="../images/sb0013.png" width="700">
 
     <img src="../images/sb0012.png" width="700">
+
+    4. JSON Viewer 적용 후
+
+    <img src="../images/sb0014.png" width="700">
+
+
+
+### Spring Boot 웹앱
+
+#### JDK 설치 
+- 생략
+
+#### Spring Boot 프로젝트 생성
+1. Spring Initializr
+    - Spring Boot Version : 3.3.10
+    - Project Lang : Java
+    - Group Id : com.hugo83
+    - Artificial Id : aiapp
+    - packaing type : War
+    - Java verison : 21 (현재 설치버전)
+    - Dependencies
+        - Spring Boot DevTools
+        - Thymeleaf
+        - Spring Web
+        - Spring Reactive Web
+
+2. resources/application.properties
+    - spring.output.ansi.enabled=always 추가
+    - spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+
+3. HomeController 클래스 추가
+
+4. resources/templates/index.html 추가
+
+5. 실행
+
+    <img src="../images/sb0015.png" width="700">
