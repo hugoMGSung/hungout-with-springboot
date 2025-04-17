@@ -127,3 +127,30 @@
     - [버전소스](https://github.com/hugoMGSung/hungout-with-springboot/blob/Python_FastAPI_0.0.0.1/003_aicombo/chap03/backend/aiserver/main.py)
 3. 이미지 객체 탐지서비스 구현
     - cahp03/backend/aiserver/main.py
+    - [버전소스](https://github.com/hugoMGSung/hungout-with-springboot/blob/Python_FastAPI_0.0.0.3/003_aicombo/chap03/backend/aiserver/main.py)
+
+4. 비동기 요청 테스트
+    - cahp03/backend/aiserver/test.py
+5. 실행 결과
+
+    - 서버 로그
+
+    <img src="../images/sb0016.png" width="700">
+
+    - 파이썬 로그
+
+    <img src="../images/sb0017.png" width="700">
+
+6. Spring Boot 작업
+    - HomeController, index.html 작업
+        - controller/HomeController.java
+        - resources/template/index.html
+    - WebClient 빈 설정
+        - config/WebClientConfig.java
+    - 요청 컨트롤러 RestReqController 작업
+        - controller/RestReqController.java
+    - 비동기 요청을 위한 HTML 페이지
+        - resources/template/index.html 수정
+    - 실행결과
+
+    <img src="../images/sb0018.png" width="700">
