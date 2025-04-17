@@ -17,7 +17,7 @@ class DetectionResult(BaseModel):
     image: str
 
 
-def detect_objects(image: Image.image):
+def detect_objects(image: Image.Image):
     img = np.array(image)  # 이미지 넘파이 배열로 변환
     results = model(img)   # 객체 탐지
     class_name = model.names    # 클래스 이름
