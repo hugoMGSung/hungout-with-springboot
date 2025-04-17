@@ -119,6 +119,8 @@
 
 ### 파이썬 FastAPI + Spring Boot
 
+<img src="../images/sb0101.png" width="700">
+
 #### backend
 1. Spring Boot 프로젝트 만들기
     - chap03/backend/myapp
@@ -154,3 +156,34 @@
     - 실행결과
 
     <img src="../images/sb0018.png" width="700">
+
+7. 프론트엔드 디자인 변경 요
+
+
+### MQTT로 실시간 객체 탐지 영상전송/수신
+
+<img src="../images/sb0102.png" width="700">
+
+#### Total
+
+1. camera.py 작성
+2. Spring Boot 수정
+    - config/WebConfig.java 작성
+
+3. ...
+
+4. Mosquitto 서버 설정
+
+    - mosquitto.conf 설정
+
+    ```txt
+    listener 9001
+    protocol websockets
+    ```
+
+
+9. 실행결과
+
+    <img src="../images/sb0019.png" width="700">
+
+- 정리 필요!
