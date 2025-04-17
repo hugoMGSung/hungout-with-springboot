@@ -115,3 +115,12 @@
 5. 실행
 
     <img src="../images/sb0015.png" width="700">
+
+
+### 파이썬 FastAPI + Spring Boot
+
+#### backend
+- Spring Boot 프로젝트 만들기
+    - chap03/backend/myapp
+- Python FastAPI 프로젝트
+    - cahp03/backend/aiserver
