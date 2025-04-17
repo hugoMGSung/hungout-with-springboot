@@ -120,7 +120,10 @@
 ### 파이썬 FastAPI + Spring Boot
 
 #### backend
-- Spring Boot 프로젝트 만들기
+1. Spring Boot 프로젝트 만들기
     - chap03/backend/myapp
-- Python FastAPI 프로젝트
-    - cahp03/backend/aiserver
+2. Python FastAPI 프로젝트 
+    - cahp03/backend/aiserver/main.py
+    - [버전소스](https://github.com/hugoMGSung/hungout-with-springboot/blob/Python_FastAPI_0.0.0.1/003_aicombo/chap03/backend/aiserver/main.py)
+3. 이미지 객체 탐지서비스 구현
+    - cahp03/backend/aiserver/main.py
