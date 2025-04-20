@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp User</title>
+</head>
+<body>
+    <form th:action="@{/signUp/save}" method="post">
+
+        <div class="title">SignUp</div>
+
+        <label for="email">이메일</label>
+        <input class="input-field" type="text" name="email" placeholder="test@naver.com">
+
+        <label for="password">비밀번호</label>
+        <input class="input-field" type="password" name="pwd" placeholder="8~12자리 영대소문자와 숫자 조합">
+
+        <label for="name">이름</label>
+        <input class="input-field" type="text" name="name" placeholder="이름을 입력해 주세요">
+
+        <label for="birth">생일</label>
+        <input class="input-field" type="text" name="birth" placeholder="0000-00-00">
+
+        <button>회원가입</button>
+    </form>
+</body>
+</html>

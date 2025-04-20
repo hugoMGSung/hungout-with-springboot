@@ -182,3 +182,120 @@ public class JsonSampleController {
 <img src="https://raw.githubusercontent.com/hugoMGSung/hungout-with-springboot/main/images/sb0006.png" width="600">
 
 [뒤로](https://github.com/hugoMGSung/hungout-with-springboot/tree/main)
+
+
+### Spring Boot DB, mybatis 회원가입
+
+1. 프로젝트 생성
+    - Spring Boot version : 3.4.4
+    - project language : Java
+    - Input Group Id : com.hugo83
+    - Input Artificial Id : mybatlog
+    - packaging type : War
+    - Java version : 21(설치된 자바버전과 일치)
+    - Choose dependencies
+        - Spring Web
+        - Spring Boot DevTools
+        - Thymeleaf
+        - Spring Session
+        - JDBC API
+        - MyBatis Framework
+
+
+2. 진행과정
+    - DB(Oracle) 설정 및 Mybatis 환경설정
+    - UserMapper.java(Interface) 설정
+    - UserMapper.xml 작성
+    - UserDTO.java 생성
+    - UserDao.java 및 UserDaoImpl.java 생성
+    - SignUpController.java 작성
+    - signUpForm.html 작성
+
+3. DB 및 Mybatis 설정
+    - build.gradle에 oracle 11 버전 설치
+        - implementation 'com.oracle.database.jdbc:ojdbc11:21.9.0.0'
+    - application.properties 오픈 작성
+
+        ```groovy
+        spring.application.name=mybatlog
+        spring.output.ansi.enabled=always
+
+        # DB
+        spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+        spring.datasource.url=jdbc:oracle:thin:@localhost:1521:xe
+        spring.datasource.username=bookuser
+        spring.datasource.password=12345
+
+        # mybatis
+        mybatis.mapper-locations=mybatis/mapper/*.xml
+        ```
+
+4. UserMapper.java 인터페이스 생성
+    - mapper 패키지 생성 후
+    - UserMapper 인터페이스 생성
+
+5. Oracle DB 생성
+    ```sql
+    CREATE TABLE BOOKUSER.USERTBL (
+        EMAIL VARCHAR2(120) NOT NULL,
+        PWD VARCHAR2(255) NOT NULL,
+        NAME VARCHAR2(50) NULL,
+        BIRTH DATE NULL,
+        REG_DATE DATE NULL,
+        CONSTRAINT USERTBL_PK PRIMARY KEY (EMAIL)
+    );
+    ```
+
+    - SPRING_SESSION 테이블 생성
+    ```sql
+    CREATE TABLE SPRING_SESSION (
+        PRIMARY_ID CHAR(36) NOT NULL,
+        SESSION_ID CHAR(36) NOT NULL,
+        CREATION_TIME NUMBER NOT NULL,
+        LAST_ACCESS_TIME NUMBER NOT NULL,
+        MAX_INACTIVE_INTERVAL INT NOT NULL,
+        EXPIRY_TIME NUMBER NOT NULL,
+        PRINCIPAL_NAME VARCHAR2(100),
+        CONSTRAINT SPRING_SESSION_PK PRIMARY KEY (PRIMARY_ID)
+    );
+
+    CREATE UNIQUE INDEX SPRING_SESSION_IX1 ON SPRING_SESSION (SESSION_ID);
+
+    CREATE INDEX SPRING_SESSION_IX2 ON SPRING_SESSION (EXPIRY_TIME);
+
+    CREATE INDEX SPRING_SESSION_IX3 ON SPRING_SESSION (PRINCIPAL_NAME);
+
+
+    CREATE TABLE SPRING_SESSION_ATTRIBUTES (
+        SESSION_PRIMARY_ID CHAR(36) NOT NULL,
+        ATTRIBUTE_NAME VARCHAR2(200) NOT NULL,
+        ATTRIBUTE_BYTES BLOB  NOT NULL,
+        CONSTRAINT SPRING_SESSION_ATTRIBUTES_PK PRIMARY KEY (SESSION_PRIMARY_ID, ATTRIBUTE_NAME),
+        CONSTRAINT SPRING_SESSION_ATTRIBUTES_FK FOREIGN KEY (SESSION_PRIMARY_ID) REFERENCES SPRING_SESSION(PRIMARY_ID) ON DELETE CASCADE
+    );
+    ```
+
+6. resources 아래 mybatis/mapper 패키지 생성
+    - UserMapper.xml 생성
+
+7. UserDTO.java 생성
+    - dto 패키지 생성
+    - UserDto 클래스 생성
+
+8. UserDao.java 및 UserDaoImpl.java 작성
+    - dao 패키지 생성
+    - UserDao 인터페이스 생성
+    - UserDaoImpl 클래스 생성
+
+9. SignUpController.java 작성
+    - controller 패키지 생성
+
+11. html 작성
+    - signUpForm.html 작성
+    - home.html 작성
+
+11. 결과화면
+
+    <img src="../images/sb0021.png" width="700">
+
+    <img src="../images/sb0022.png" width="700">
